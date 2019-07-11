@@ -1,143 +1,118 @@
-import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import * as WebBrowser from "expo-web-browser";
+import React from "react";
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Text,
+  Title,
+  Button,
+  Left,
+  Right,
+  Body,
+  Icon,
+  List,
+  ListItem
+} from "native-base";
+import ActivityItem from "../components/ActivityItem";
 
-import { MonoText } from '../components/StyledText';
-
-export default function HomeScreen() {
+export default (HomeScreen = props => {
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-          <View >
-            <Text style={styles.welcomeText} >Welcome User!</Text>
-            <Text style={styles.welcomeText} >Rank: </Text>
-          </View>
+    <Container>
+      <View style={styles.welcomeContainer}>
+        <Image
+          source={
+            __DEV__
+              ? require("../assets/images/robot-dev.png")
+              : require("../assets/images/robot-prod.png")
+          }
+          style={styles.welcomeImage}
+        />
+        <View>
+          <Text style={styles.welcomeText}>Welcome User!</Text>
+          <Text style={styles.welcomeText}>Rank: </Text>
         </View>
-      </ScrollView>
-    </View>
+      </View>
+      <View style={styles.activityContainer}>
+        <Button
+          block
+          transparent
+          onPress={() => props.navigation.navigate("BookLunch")}
+        >
+          <Text>Find lunch buddies!</Text>
+        </Button>
+      </View>
+      <Text style={styles.activitiesHeader}>Your Activities:</Text>
+      <Content padder>
+        <List>
+          <ActivityItem
+            description={
+              "Dined out with Ginny, Scott and Haocen on 7/13/19 at a Korean restaurant."
+            }
+          />
+          <ActivityItem
+            description={
+              "Picked up take-out for Aaron on 7/13/19 from a Korean restaurant."
+            }
+          />
+        </List>
+      </Content>
+    </Container>
   );
-}
+});
 
 HomeScreen.navigationOptions = {
-  header: null,
+  title: "Lunch Buddy"
 };
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
-  );
-}
-
 const styles = StyleSheet.create({
+  activitiesHeader: {
+    alignSelf: "center"
+  },
+  activitiesItem: {
+    paddingTop: 8,
+    paddingBottom: 8
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
+    paddingTop: 30
   },
   welcomeText: {
     marginBottom: 10,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 20,
+    color: "rgba(0,0,0,0.4)",
+    fontSize: 20
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 10
   },
   welcomeContainer: {
-    flex: 1,
+    flex: 0,
     flexDirection: "row",
-    marginLeft: 10,
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 20
   },
   welcomeImage: {
     width: 100,
     height: 80,
-    resizeMode: 'contain',
-    marginLeft: 10,
-    marginRight: 10,
+    resizeMode: "contain",
+    marginRight: 10
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  activityContainer: {
+    flex: 0,
+    height: 150,
+    justifyContent: "center",
+    marginBottom: 50
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  pastActivitiesContainer: {
+    flex: 1
+  }
 });
