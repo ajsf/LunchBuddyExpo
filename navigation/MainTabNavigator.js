@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import BookLunch from '../screens/BookLunch';
+import LunchGroup from '../screens/LunchGroup';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -15,8 +16,10 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    //Home: HomeScreen,
+    Home: LunchGroup,
     BookLunch: BookLunch,
+    LunchGroup: LunchGroup
   },
   config
 );

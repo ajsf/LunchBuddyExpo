@@ -7,19 +7,14 @@ import {
   Form,
   Item,
   Picker,
-  Input,
   Label,
-  Header,
   Left,
-  Body,
   Right,
-  View,
   Button,
   ListItem,
   Switch,
   Text,
-  Icon,
-  Title
+  Icon
 } from "native-base";
 
 export default class BookLunch extends React.Component {
@@ -98,8 +93,6 @@ export default class BookLunch extends React.Component {
       : times.slice(2, times.length);
 
     const canSubmit = distance && startTime && endTime && amount && category;
-    console.log(category);
-    console.log("can: ", canSubmit);
 
     return (
       <Container>
@@ -178,22 +171,20 @@ export default class BookLunch extends React.Component {
                 <Picker.Item label="French" value={6} />
               </Picker>
             </Item>
-          
           </Form>
-          
         </Content>
         <ListItem stackedLabel picker>
-              <Left>
-                <Text>Can you pick up take-out food?</Text>
-              </Left>
-              <Right>
-                <Switch
-                  value={this.state.canPickup}
-                  onValueChange={this.onPickupChanged.bind(this)}
-                />
-              </Right>
-            </ListItem>
-           
+          <Left>
+            <Text>Can you pick up take-out food?</Text>
+          </Left>
+          <Right>
+            <Switch
+              value={this.state.canPickup}
+              onValueChange={this.onPickupChanged.bind(this)}
+            />
+          </Right>
+        </ListItem>
+
         <Button disabled={!canSubmit} full>
           <Text>Submit</Text>
         </Button>
@@ -205,41 +196,3 @@ export default class BookLunch extends React.Component {
 BookLunch.navigationOptions = {
   title: "Book A Lunch"
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 30,
-    paddingLeft: 20
-  },
-  welcomeText: {
-    marginBottom: 10,
-    color: "rgba(0,0,0,0.4)",
-    fontSize: 20
-  },
-  contentContainer: {
-    paddingTop: 10
-  },
-  welcomeContainer: {
-    flex: 0,
-    flexDirection: "row",
-    marginTop: 20,
-    marginBottom: 20
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginRight: 10
-  },
-  activityContainer: {
-    flex: 0,
-    height: 150,
-    justifyContent: "center",
-    marginBottom: 50
-  },
-  pastActivitiesContainer: {
-    flex: 1
-  }
-});

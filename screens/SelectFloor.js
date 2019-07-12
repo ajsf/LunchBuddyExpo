@@ -1,29 +1,9 @@
 import React from "react";
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View
-} from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Text,
-  Title,
-  Button,
-  Left,
-  Right,
-  Body,
-  Icon,
-  List,
-  ListItem
-} from "native-base";
+import { Image, StyleSheet } from "react-native";
+import { Container, Content, Text, List } from "native-base";
 import OfficeLocation from "../components/OfficeLocation";
 
-export default SelectOffice = props => {
+export default (SelectOffice = props => {
   return (
     <Container>
       <Container style={styles.container}>
@@ -40,16 +20,19 @@ export default SelectOffice = props => {
       </Container>
       <Content>
         <List>
-          <OfficeLocation description="11th Floor" next={() => props.navigation.navigate("App")} />
+          <OfficeLocation
+            description="11th Floor"
+            next={() => props.navigation.navigate("App")}
+          />
         </List>
       </Content>
     </Container>
   );
-};
+});
 
 SelectOffice.navigationOptions = {
-    title: "Select A Floor"
-  };
+  title: "Select A Floor"
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -68,28 +51,10 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,0.4)",
     fontSize: 15
   },
-  contentContainer: {
-    paddingTop: 10
-  },
-  welcomeContainer: {
-    flex: 0,
-    flexDirection: "row",
-    marginTop: 20,
-    marginBottom: 20
-  },
   welcomeImage: {
     width: 100,
     height: 80,
     resizeMode: "contain",
     marginRight: 10
-  },
-  activityContainer: {
-    flex: 0,
-    height: 150,
-    justifyContent: "center",
-    marginBottom: 50
-  },
-  pastActivitiesContainer: {
-    flex: 1
   }
 });

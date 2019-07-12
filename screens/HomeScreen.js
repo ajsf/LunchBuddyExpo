@@ -1,27 +1,7 @@
-import * as WebBrowser from "expo-web-browser";
 import React from "react";
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View
-} from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Text,
-  Title,
-  Button,
-  Left,
-  Right,
-  Body,
-  Icon,
-  List,
-  ListItem
-} from "native-base";
+import { Image, StyleSheet, View } from "react-native";
+import { Container, Content, Text, Button, List } from "native-base";
+
 import ActivityItem from "../components/ActivityItem";
 
 export default (HomeScreen = props => {
@@ -29,11 +9,7 @@ export default (HomeScreen = props => {
     <Container>
       <View style={styles.welcomeContainer}>
         <Image
-          source={
-            __DEV__
-              ? require("../assets/images/robot-dev.png")
-              : require("../assets/images/robot-prod.png")
-          }
+          source={require("../assets/images/robot-dev.png")}
           style={styles.welcomeImage}
         />
         <View>
@@ -81,11 +57,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8
   },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 30
-  },
   welcomeText: {
     marginBottom: 10,
     color: "rgba(0,0,0,0.4)",
@@ -111,8 +82,5 @@ const styles = StyleSheet.create({
     height: 150,
     justifyContent: "center",
     marginBottom: 50
-  },
-  pastActivitiesContainer: {
-    flex: 1
   }
 });
