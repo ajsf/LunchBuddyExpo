@@ -6,18 +6,29 @@ import MyText from "../components/MyText";
 import Logo from "../components/Logo";
 
 export default (SelectOffice = props => {
+  const floorSelected = (floorId, officeId) => {
+    //this is where the api call to save the floorId and officeId would go
+    props.navigation.navigate("App");
+  };
+
+  const floors = props.navigation.getParam("floors");
+  console.log(floors);
+
+  const floorViews = floors.map(floor => (
+    <OfficeLocation
+      description={floor.floor}
+      key={floor.officeFloorId}
+      next={() => floorSelected(floor.officeFloorId, floor.officeId)}
+    />
+  ));
+
   return (
     <Container>
       <Logo />
       <MyText style={styles.connectText}>What floor is your team on?</MyText>
       <MyText style={styles.selectText}>Connect to people you know.</MyText>
       <Content>
-        <List>
-          <OfficeLocation
-            description="11th Floor"
-            next={() => props.navigation.navigate("App")}
-          />
-        </List>
+        <List>{floorViews}</List>
       </Content>
     </Container>
   );

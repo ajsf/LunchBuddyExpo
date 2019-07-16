@@ -7,9 +7,7 @@ import Avatar from "../components/Avatar";
 export default class LunchGroup extends React.Component {
   constructor(props) {
     super(props);
-    console.log("Lunch group props:", props);
     const lunch = props.navigation.getParam("lunch");
-    console.log(lunch);
     const currentTime = new Date();
     const lunchTime = new Date(currentTime.getTime() + 60000 * 20);
     this.state = {
