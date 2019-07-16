@@ -1,23 +1,16 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
-import { Container, Content, Text, List } from "native-base";
+import { StyleSheet } from "react-native";
+import { Container, Content, List } from "native-base";
 import OfficeLocation from "../components/OfficeLocation";
+import MyText from "../components/MyText";
+import Logo from "../components/Logo";
 
 export default (SelectOffice = props => {
   return (
     <Container>
-      <Container style={styles.container}>
-        <Image
-          source={
-            __DEV__
-              ? require("../assets/images/robot-dev.png")
-              : require("../assets/images/robot-prod.png")
-          }
-          style={styles.welcomeImage}
-        />
-        <Text style={styles.connectText}>Connect To Your Office</Text>
-        <Text style={styles.selectText}>Select Your Location</Text>
-      </Container>
+      <Logo />
+      <MyText style={styles.connectText}>Connect To Your Office</MyText>
+      <MyText style={styles.selectText}>Select Your Location</MyText>
       <Content>
         <List>
           <OfficeLocation
@@ -35,26 +28,15 @@ SelectOffice.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 50
-  },
   connectText: {
+    alignSelf: "center",
     marginTop: 10,
     marginBottom: 10,
-    color: "rgba(0,0,0,0.4)",
     fontSize: 20
   },
   selectText: {
+    alignSelf: "center",
     marginBottom: 10,
-    color: "rgba(0,0,0,0.4)",
     fontSize: 15
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginRight: 10
   }
 });

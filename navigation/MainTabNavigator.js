@@ -4,10 +4,11 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import BookLunch from '../screens/BookLunch';
 import LunchGroup from '../screens/LunchGroup';
+import RequestTakeout from '../screens/RequestTakeout';
+
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -16,8 +17,7 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    //Home: HomeScreen,
-    Home: LunchGroup,
+    Home: HomeScreen,
     BookLunch: BookLunch,
     LunchGroup: LunchGroup
   },
@@ -40,21 +40,21 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+const TakeoutStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Takeout: RequestTakeout,
   },
   config
 );
 
-LinksStack.navigationOptions = {
+TakeoutStack.navigationOptions = {
   tabBarLabel: 'Takeout',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-restaurant' : 'md-restaurant'} />
   ),
 };
 
-LinksStack.path = '';
+TakeoutStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
@@ -74,7 +74,7 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  TakeoutStack,
   SettingsStack,
 });
 

@@ -17,34 +17,19 @@ import {
 } from "native-base";
 import MyText from "../components/MyText";
 
-export default class BookLunch extends React.Component {
+export default class RequestTakeout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      distance: undefined,
       startTime: undefined,
-      endTime: undefined,
       amount: undefined,
-      category: undefined,
-      canPickup: false
+      category: undefined
     };
-  }
-
-  onDistanceChanged(newDistance) {
-    this.setState({
-      distance: newDistance
-    });
   }
 
   onStartTimeChanged(newTime) {
     this.setState({
       startTime: newTime
-    });
-  }
-
-  onEndTimeChanged(newTime) {
-    this.setState({
-      endTime: newTime
     });
   }
 
@@ -60,20 +45,14 @@ export default class BookLunch extends React.Component {
     });
   }
 
-  onPickupChanged(bool) {
-    this.setState({
-      canPickup: bool
-    });
-  }
-
   submitLunch() {
     this.props.navigation.navigate("Home", {
-      lunch: this.state
+      takeout: this.state
     });
   }
 
   render() {
-    const { distance, startTime, endTime, amount, category } = this.state;
+    const { startTime, amount, category } = this.state;
     const times = [
       "10:00 AM",
       "10:30 AM",
@@ -89,59 +68,22 @@ export default class BookLunch extends React.Component {
       "3:30 PM",
       "4:00 PM"
     ];
-
-    const startOptions = endTime
-      ? times.slice(0, times.indexOf(endTime) - 1)
-      : times.slice(0, times.length - 2);
-    const endOptions = startTime
-      ? times.slice(times.indexOf(startTime) + 2, times.length)
-      : times.slice(2, times.length);
-
-    const canSubmit = distance && startTime && endTime && amount && category;
+  
+    const canSubmit = startTime && amount && category;
 
     return (
       <Container>
         <Content padder>
           <Form>
             <Item stackedLabel picker>
-              <Label>How far are you willing to travel?</Label>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                selectedValue={distance}
-                onValueChange={this.onDistanceChanged.bind(this)}
-              >
-                <Picker.Item label="0.5 Miles" value={0} />
-                <Picker.Item label="1 mile" value={1} />
-                <Picker.Item label="2 miles" value={2} />
-                <Picker.Item label="3 miles" value={3} />
-                <Picker.Item label="4 miles" value={4} />
-                <Picker.Item label="5 miles" value={5} />
-                <Picker.Item label="Greater than 5 miles" value={6} />
-              </Picker>
-            </Item>
-            <Item stackedLabel picker>
-              <Label>When can you start?</Label>
+              <Label>When time do you want your food?</Label>
               <Picker
                 mode="dropdown"
                 iosIcon={<Icon name="arrow-down" />}
                 selectedValue={startTime}
                 onValueChange={this.onStartTimeChanged.bind(this)}
               >
-                {startOptions.map(time => (
-                  <Picker.Item label={time} value={time} key={time} />
-                ))}
-              </Picker>
-            </Item>
-            <Item stackedLabel picker>
-              <Label>When do you need to be done by?</Label>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                selectedValue={endTime}
-                onValueChange={this.onEndTimeChanged.bind(this)}
-              >
-                {endOptions.map(time => (
+                {times.map(time => (
                   <Picker.Item label={time} value={time} key={time} />
                 ))}
               </Picker>
@@ -178,18 +120,6 @@ export default class BookLunch extends React.Component {
             </Item>
           </Form>
         </Content>
-        <ListItem stackedLabel picker>
-          <Left>
-            <MyText>Can you pick up take-out food?</MyText>
-          </Left>
-          <Right>
-            <Switch
-              value={this.state.canPickup}
-              onValueChange={this.onPickupChanged.bind(this)}
-            />
-          </Right>
-        </ListItem>
-
         <Button
           disabled={!canSubmit}
           full
@@ -202,6 +132,6 @@ export default class BookLunch extends React.Component {
   }
 }
 
-BookLunch.navigationOptions = {
-  title: "Book A Lunch"
+RequestTakeout.navigationOptions = {
+  title: "Request Takeout"
 };
